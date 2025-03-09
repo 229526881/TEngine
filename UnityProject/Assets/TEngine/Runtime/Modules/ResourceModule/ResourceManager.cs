@@ -297,7 +297,7 @@ namespace TEngine
 
         /// <summary>
         /// 是否需要从远端更新下载。
-        /// </summary>
+        /// </summary>  
         /// <param name="assetInfo">资源信息。</param>
         /// <param name="packageName">资源包名称。</param>
         public bool IsNeedDownloadFromRemote(AssetInfo assetInfo, string packageName = "")
