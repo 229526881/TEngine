@@ -392,7 +392,7 @@ namespace TEngine
                 if (internalObject.IsInUse || internalObject.Locked || !internalObject.CustomCanReleaseFlag)
                 {
                     return false;
-                }
+                } 
 
                 _objects.Remove(internalObject.Name, internalObject);
                 _objectMap.Remove(internalObject.Peek().Target);
@@ -433,7 +433,7 @@ namespace TEngine
             /// </summary>
             /// <param name="toReleaseCount">尝试释放对象数量。</param>
             /// <param name="releaseObjectFilterCallback">释放对象筛选函数。</param>
-            public void Release(int toReleaseCount, ReleaseObjectFilterCallback<T> releaseObjectFilterCallback)
+            public void  Release(int toReleaseCount, ReleaseObjectFilterCallback<T> releaseObjectFilterCallback)
             {
                 if (releaseObjectFilterCallback == null)
                 {
