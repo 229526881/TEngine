@@ -16,11 +16,33 @@ MonoBehaviour:
     UserAgreesToHaveItOnTheScene: 0
     UserAgreesToHaveItInsideThePluginsFolder: 0
     GoogleLiveSyncIsUptoDate: 1
-    mTerms: []
+    mTerms:
+    - Term: test
+      TermType: 0
+      Description: 
+      Languages:
+      - 1
+      - 2
+      Flags: 0000
+      Languages_Touch: []
+    - Term: test2
+      TermType: 0
+      Description: 
+      Languages:
+      - 3
+      - 4
+      Flags: 0000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: 
-    mLanguages: []
+    mLanguages:
+    - Name: Chinese
+      Code: zh
+      Flags: 0
+    - Name: English
+      Code: en
+      Flags: 0
     IgnoreDeviceLanguage: 0
     _AllowUnloadingLanguages: 0
     Google_WebServiceURL: 
@@ -33,7 +55,7 @@ MonoBehaviour:
     GoogleUpdateSynchronization: 1
     GoogleUpdateDelay: 0
     Assets: []
-    Spreadsheet_LocalFileName: 
+    Spreadsheet_LocalFileName: E:/Project/Study/TEngine/LanguageCSV/languages1.csv
     Spreadsheet_LocalCSVSeparator: ','
     Spreadsheet_LocalCSVEncoding: utf-8
     Spreadsheet_SpecializationAsRows: 1
