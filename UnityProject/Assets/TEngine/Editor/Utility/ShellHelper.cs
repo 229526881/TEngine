@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 
-namespace TEngine
+namespace TEngine.Editor
 {
     /// <summary>
     /// Unity编辑器主动执行cmd帮助类。
@@ -100,6 +100,14 @@ namespace TEngine
             finally
             {
                 process.Close();
+            }
+        }
+        
+        public static void RunByPath(string path)
+        {
+            if (!string.IsNullOrEmpty(path))
+            {
+                Process.Start(path);
             }
         }
     }
