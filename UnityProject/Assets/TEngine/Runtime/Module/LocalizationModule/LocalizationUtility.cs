@@ -6,7 +6,7 @@ namespace TEngine
     /// <summary>
     /// 默认本地化辅助器。
     /// </summary>
-    public class DefaultLocalizationHelper
+    public class LocalizationUtility
     {
 #if UNITY_EDITOR
         public const string I2GlobalSourcesEditorPath = "Assets/Editor/I2Localization/I2Languages.asset";
@@ -71,10 +71,10 @@ namespace TEngine
             }
         }
 
-        private static readonly Dictionary<Language, string> s_LanguageMap = new Dictionary<Language, string>();
-        private static readonly Dictionary<string, Language> s_LanguageStrMap = new Dictionary<string, Language>();
+        private static readonly Dictionary<Language, string> _languageMap = new Dictionary<Language, string>();
+        private static readonly Dictionary<string, Language> _languageStrMap = new Dictionary<string, Language>();
 
-        static DefaultLocalizationHelper()
+        static LocalizationUtility()
         {
             RegisterLanguageMap(Language.English);
             RegisterLanguageMap(Language.ChineseSimplified, "Chinese");
@@ -90,8 +90,8 @@ namespace TEngine
                 str = language.ToString();
             }
 
-            s_LanguageMap[language] = str;
-            s_LanguageStrMap[str] = language;
+            _languageMap[language] = str;
+            _languageStrMap[str] = language;
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace TEngine
                 return Language.Unspecified;
             }
 
-            if (s_LanguageStrMap.TryGetValue(str, out var language))
+            if (_languageStrMap.TryGetValue(str, out var language))
             {
                 return language;
             }
@@ -122,7 +122,7 @@ namespace TEngine
         /// <returns>语言字符串。</returns>
         public static string GetLanguageStr(Language language)
         {
-            if (s_LanguageMap.TryGetValue(language, out var ret))
+            if (_languageMap.TryGetValue(language, out var ret))
             {
                 return ret;
             }
