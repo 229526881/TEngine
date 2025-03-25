@@ -133,7 +133,7 @@ namespace TEngine
             EPlayMode playMode = (EPlayMode)UnityEditor.EditorPrefs.GetInt("EditorPlayMode");
             Log.Warning($"Editor Module Used :{playMode}");
 #else
-            //运行时使用。
+            //运行时使用。e
             EPlayMode playMode = (EPlayMode)PlayMode;
 #endif
 
