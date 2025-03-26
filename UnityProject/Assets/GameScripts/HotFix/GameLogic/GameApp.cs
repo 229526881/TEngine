@@ -30,6 +30,7 @@ public partial class GameApp
     {
         GameEvent.Get<ILoginUI>().ShowLoginUI();
         GameModule.UI.ShowUIAsync<BattleMainUI>();
+        //GameModule.EcsModule.InitTypes(_hotfixAssembly);
     }
     
     private static void Release()

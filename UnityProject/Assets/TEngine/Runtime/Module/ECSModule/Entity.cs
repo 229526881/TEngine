@@ -264,16 +264,40 @@ namespace TEngine
             //回收组件
             if (components != null)
             {
-                
+                foreach (KeyValuePair<Type, Entity> kv in this.components)
+                {
+                    kv.Value.Clear();
+                }
+                this.components.Clear();
+                this.components = null;
             }
 
             //清理children
             if (children != null)
             {
-                
+                foreach (Entity child in this.children.Values)
+                {
+                    child.Clear();
+                }
+                this.children.Clear();
+                children = null;
             }
+
+            domain = null;
             
+            if (this.parent != null && !this.parent.IsDisposed)
+            {
+                if (this.IsComponent)
+                {
+                    this.parent.RemoveComponent(this);
+                }
+                else
+                {
+                    this.parent.RemoveChild(this);
+                }
+            }
             //触发destory 事件
+            //GameModule.EcsModule;
         }
     }
 }

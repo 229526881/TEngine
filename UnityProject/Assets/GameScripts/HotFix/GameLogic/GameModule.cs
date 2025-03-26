@@ -91,6 +91,14 @@ public class GameModule
     public static IObjectPoolModule ObjectPool => _objectPool ??= Get<IObjectPoolModule>();
 
     private static IObjectPoolModule _objectPool;
+    
+    
+    /// <summary>
+    /// ecs模块。
+    /// </summary>
+    public static IEcsModule EcsModule => _ecsModule ??= Get<IEcsModule>();
+
+    private static IEcsModule _ecsModule;
     #endregion
     
     /// <summary>
@@ -122,5 +130,6 @@ public class GameModule
         _timer = null;
         _localization = null;
         _objectPool = null;
+        _ecsModule = null;
     }
 }

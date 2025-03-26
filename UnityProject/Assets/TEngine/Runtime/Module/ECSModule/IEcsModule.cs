@@ -9,6 +9,8 @@
         /// <param name="isRegister"></param>
         void RegisterSystem(Entity component, bool isRegister = true);
 
+        void Remove(long instanceId);
+
 
         /// <summary>
         /// system Awake
