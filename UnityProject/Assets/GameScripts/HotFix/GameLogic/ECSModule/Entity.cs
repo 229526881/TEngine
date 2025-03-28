@@ -106,8 +106,6 @@ namespace TEngine
             }
         }
 
-
-
         private Entity ComponentParent
         {
             set
@@ -138,15 +136,12 @@ namespace TEngine
               //  EventSystem.Instance.RegisterSystem(this, value);
             }
         }
-        
-      //  public  List<Entity> components = new List<Entity>();
 
         public Dictionary<Type,Entity>components = new Dictionary<Type, Entity>();
 
-
         private Entity AddComponentSelf(Type type)
         {
-            if (components==null&&components.ContainsKey(type))
+            if (components!=null&&components.ContainsKey(type))
             {
                 throw new Exception($"entity already has component: {type.FullName}");
             }
@@ -223,17 +218,73 @@ namespace TEngine
             //  this.AddChildDB(entity);
         }
         
-        private bool RemoveChild(Entity entity)
+        private void RemoveChild(Entity entity)
         {
-            return false;
+            if (IsDisposed||children==null)
+                return ;
+            
+            if(children==null)
+                return;
+            
+            children.Remove(entity.Id);
+            entity.Clear();
+        }
+
+        public void RemoveComponent<K>() where K : Entity
+        {
+            RemoveComponent(typeof(K));
+        }
+
+        public void RemoveComponent(Entity component)
+        {
+            if (this.IsDisposed)
+            {
+                return;
+            }
+
+            if (this.components == null)
+            {
+                return;
+            }
+
+            Type type = component.GetType();
+            Entity c = this.GetComponent(component.GetType());
+            if (c == null)
+            {
+                return;
+            }
+
+            if (c.InstanceId != component.InstanceId)
+            {
+                return;
+            }
+            
+            this.components.Remove(type);
+            c.Clear();
+        }
+
+        public void RemoveComponent(Type type)
+        {
+            if (this.IsDisposed)
+            {
+                return;
+            }
+
+            Entity c = this.GetComponent(type);
+            if (c == null)
+            {
+                return;
+            }
+
+            if (this.components == null)
+            {
+                return;
+            }
+            this.components.Remove(type);
+
+            c.Clear();
         }
         
-        public bool RemoveComponent(Entity entity)
-        {
-            return false;
-        }
-
-
         public static Entity Create(Type type)
         {
             Entity entity = MemoryPool.Acquire(type) as  Entity;

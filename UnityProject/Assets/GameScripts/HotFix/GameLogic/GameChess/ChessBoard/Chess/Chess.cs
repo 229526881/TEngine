@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GameLogic
 {
-    public class ChessEntity : Entity
+    public class Chess : Entity
     {
        
     }

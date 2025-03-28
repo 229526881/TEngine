@@ -91,14 +91,16 @@ public class GameModule
     public static IObjectPoolModule ObjectPool => _objectPool ??= Get<IObjectPoolModule>();
 
     private static IObjectPoolModule _objectPool;
-    
-    
+
+
     /// <summary>
     /// ecs模块。
     /// </summary>
-    public static IEcsModule EcsModule => _ecsModule ??= Get<IEcsModule>();
+    public static EcsModule EcsModule => EcsModule.Instance;
+    
+    private static EcsModule _ecsModule;
+    
 
-    private static IEcsModule _ecsModule;
     #endregion
     
     /// <summary>

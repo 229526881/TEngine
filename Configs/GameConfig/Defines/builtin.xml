@@ -14,4 +14,15 @@
         <var name="z" type="float"/>
         <var name="w" type="float"/>
     </bean>
+
+   <bean name="RandomWeightItem"  valueType="1" sep=",">
+        <var name="param" type="int"/>
+        <var name="weight" type="int"/>
+       
+    </bean>
+
+    <bean name="Rewards"  valueType="1" sep=",">
+        <var name="id" type="int"/>
+        <var name="count" type="int"/>
+    </bean>
 </module>

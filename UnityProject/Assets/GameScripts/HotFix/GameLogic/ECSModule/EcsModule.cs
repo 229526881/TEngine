@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using GameLogic;
 using TEngine;
 
 namespace TEngine
 {
-    public class EcsModule: Module,IEcsModule
+    public class EcsModule: Singleton<EcsModule>,IUpdate,IFixedUpdate,ILateUpdate
     {
 
         private List<Assembly> _hotfixAssemble;
@@ -22,12 +23,16 @@ namespace TEngine
         
         private static readonly Dictionary<string, Type> _cachedTypes = new Dictionary<string, Type>(StringComparer.Ordinal);
 
-        public override void OnInit()
+
+
+        protected override void OnInit()
         {
+            
         }
 
-        public override void Shutdown()
+        protected override void OnRelease()
         {
+            
         }
 
         public void InitAssemblys(List<Assembly> _hotfixAssembly)
@@ -129,7 +134,7 @@ namespace TEngine
         {
         }
 
-        public void Update()
+        public void OnUpdate()
         {
             while (this.updates.Count > 0)
             {
@@ -167,7 +172,7 @@ namespace TEngine
             Utlility_ObjectHelper.Swap(ref this.updates, ref this.updates2);
         }
 
-        public void LateUpdate()
+        public void OnLateUpdate()
         {
             while (this.lateUpdates.Count > 0)
             {
@@ -205,7 +210,7 @@ namespace TEngine
             Utlility_ObjectHelper.Swap(ref this.lateUpdates, ref this.lateUpdates2 );
         }
 
-        public void FixedUpdate()
+        public void OnFixedUpdate()
         {
             
         }
@@ -214,5 +219,7 @@ namespace TEngine
         {
             
         }
+
+
     }
 }
