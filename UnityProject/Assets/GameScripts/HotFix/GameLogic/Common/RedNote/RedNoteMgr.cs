@@ -76,7 +76,7 @@ namespace GameLogic
         /// </summary>
         private void InitRedNoteTween()
         {
-            // LeanTween.value(LeanTween.tweenEmpty, OnRedNoteTween, 1f, 0.75f, 0.5f).setLoopPingPong();
+            //LeanTween.value(LeanTween.tweenEmpty, OnRedNoteTween, 1f, 0.75f, 0.5f).setLoopPingPong();
         }
 
         /// <summary>
@@ -275,7 +275,7 @@ namespace GameLogic
             CalcRedNoteRelation(notifyStr);
         }
 
-        public void RecursiveClearNotifyKeyValue(string key)
+        public void RecursiveClearNotifyKeyValue(string key) //清除特定key 和下级的红点
         {
             if (!_checkDic.TryGetValue(key, out var checkMgr))
             {
@@ -384,7 +384,7 @@ namespace GameLogic
             var key = notifyKey;
             if (_checkOwnDic.TryGetValue(key, out var ownerList))
             {
-                foreach (var owner in ownerList)
+                foreach (var owner in ownerList) //父节点的都是更上层级的进行处理
                 {
                     if (_checkDic.TryGetValue(owner, out var checker))
                     {
@@ -440,6 +440,7 @@ namespace GameLogic
                 int paramIndex = paramList.Count;
                 while (paramIndex >= 0)
                 {
+                    //最后面的获得的是A-1-2
                     var keyStr = BuildKey(notify, tmpParamList);
 
                     if (!_notifyMap.ContainsKey(keyStr))
@@ -498,7 +499,7 @@ namespace GameLogic
             int count = childList.Count;
             for (int i = 0; i < count; i++)
             {
-                var child = childList[i];
+                var child = childList[i]; //给低级节点增加较高的父节点 A-1-2 的owner里增加A-1
                 if (!_checkOwnDic.TryGetValue(child, out var ownerList))
                 {
                     ownerList = new List<string>();
@@ -595,7 +596,7 @@ public class RedNoteStructDic
             var keyStruct = new RedNoteKeyStruct(notify, paramList);
             key = keyStruct.Key;
             RedNoteMgr.Instance.SetKeyConvertDic(key, keyStruct);
-            list.Add(keyStruct);
+            list.Add(keyStruct); 
         }
         return key;
     }
