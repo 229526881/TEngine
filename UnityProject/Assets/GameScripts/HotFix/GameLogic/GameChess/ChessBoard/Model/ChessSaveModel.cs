@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using GameConfig;
+using Newtonsoft.Json;
 
 namespace GameLogic
 {
@@ -76,6 +78,16 @@ namespace GameLogic
             orignBubblyId = data.orignBubblyId;
         }
     }
+    
+    /// <summary>
+    /// buff存档数据
+    /// </summary>
+    public class BuffStateSaveData
+    {
+        public string key;
+        public long startT;
+        public long endT;
+    }
 
     /// <summary>
     /// 仓库存档信息
@@ -98,5 +110,53 @@ namespace GameLogic
         public int price;
         [JsonIgnore]
         public bool  isPay=false;
+    }
+    
+  
+    /// <summary>
+    /// 单个订单的存档
+    /// </summary>
+    public class OrderData
+    {
+        /// <summary>
+        /// 随机订单有商品，固定没有
+        /// </summary>
+        public List<int> woodList=new List<int>();
+          
+        /// <summary>
+        /// 订单ID
+        /// </summary>
+        public int orderId=0;
+        
+        /// <summary>
+        /// 实例Id，保证不重复
+        /// </summary>
+        public int instanceId = 0;
+
+        /// <summary>
+        /// 额外奖励有才行
+        /// </summary>
+        public List<Rewards> rewards=new List<Rewards>();
+
+        /// <summary>
+        /// 需要记录的奖励,特殊情况会记录
+        /// </summary>
+        public List<Rewards> extraRewards=new List<Rewards>();
+
+        /// <summary>
+        /// 人物的spine
+        /// </summary>
+        public string characer;
+
+        public  OrderData(int orderId)
+        {
+            this.orderId = orderId;
+        }
+          
+        public  OrderData(int orderId,int instanceId)
+        {
+            this.orderId = orderId;
+            this.instanceId = instanceId;
+        }
     }
 }

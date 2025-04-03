@@ -5,6 +5,11 @@ namespace GameLogic
     public abstract class BaseSaveData
     {
         protected string className;
+        
+        /// <summary>
+        /// 是否变成脏数据
+        /// </summary>
+        public bool isDirty = false;
 
         public BaseSaveData()
         {

@@ -1,4 +1,7 @@
-﻿namespace TEngine
+﻿using System.Collections.Generic;
+using System.Text;
+
+namespace TEngine
 {
     public static partial class Utility
     {
@@ -16,6 +19,28 @@
             public static void SetTextHelper(ITextHelper textHelper)
             {
                 _textHelper = textHelper;
+            }
+            
+            public static StringBuilder stringBuilder=new StringBuilder();
+
+            public static string CombineString(params string [] strs)
+            {
+                stringBuilder.Clear();
+                for (int i = 0; i < strs.Length; i++)
+                {
+                    stringBuilder.Append(strs[i]);
+                }
+                return stringBuilder.ToString();
+            }
+            
+            public static string CombineString(List<string> strs)
+            {
+                stringBuilder.Clear();
+                for (int i = 0; i < strs.Count; i++)
+                {
+                    stringBuilder.Append(strs[i]);
+                }
+                return stringBuilder.ToString();
             }
 
             /// <summary>

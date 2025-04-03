@@ -1,13 +1,28 @@
 ﻿using System.IO;
+using TEngine;
 
 namespace GameLogic
 {
+    public enum DataSaveType
+    {
+        /// <summary>
+        /// json。
+        /// </summary>
+        Json,
+        /// <summary>
+        /// 二进制储存。
+        /// </summary>
+        Byte,
+    }
+    
     public class SaveModule:Singleton<UIModule>
     {
-
+        public IDataSaveManegr _dataSaveManegr;
+        public string pathRoot;
         protected override void OnInit()
         {
-            
+            pathRoot = Utility.Path.GetProjectRootPath();
+            _dataSaveManegr = new DefaultDataSaveManager();
         }
 
         protected override void OnRelease()
@@ -18,16 +33,7 @@ namespace GameLogic
 
         public void SaveSpecificData(string fileName,string content)
         {
-            //   string path = GetSaveDataPath(fileName);
-            string path = fileName;
-#if UNITY_EDITOR
-            string directoryPath = Path.GetDirectoryName(path);
-            if (!Directory.Exists(directoryPath))
-            {
-                Directory.CreateDirectory(directoryPath);
-            }
-#endif
-            File.WriteAllText(path, content);
+            _dataSaveManegr.SaveSpecificData(fileName,content);
         }
     }
 }

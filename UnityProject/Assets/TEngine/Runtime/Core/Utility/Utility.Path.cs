@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using UnityEngine;
 
 namespace TEngine
 {
@@ -87,6 +88,22 @@ namespace TEngine
                 {
                     return false;
                 }
+            }
+
+
+            /// <summary>
+            /// 获得文件目录相关
+            /// </summary>
+            /// <returns></returns>
+            public static string GetProjectRootPath()
+            {
+                string pathRoot = "";
+#if UNITY_EDITOR
+           pathRoot = Application.streamingAssetsPath;
+#elif UNITY_ANDROID||UNITY_IOS|| UNITY_STANDALONE_WIN
+           path = $"{Application.persistentDataPath};
+#endif
+                return pathRoot;
             }
         }
     }

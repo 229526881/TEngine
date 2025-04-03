@@ -305,6 +305,15 @@ namespace TEngine
             return null;
         }
 
+        public virtual T GetComponent<T>()  where T : Entity
+        {
+            Type type= typeof(T);
+            if (components!=null&&components.TryGetValue(type, out Entity component))
+            {
+                return component as T;
+            }
+            return null;
+        }
         
         public void Clear()
         {
@@ -312,6 +321,7 @@ namespace TEngine
                 return;
             isRegister = false;
             InstanceId = 0;
+            OnDispose();
             //回收组件
             if (components != null)
             {
@@ -349,6 +359,14 @@ namespace TEngine
             }
             //触发destory 事件
             //GameModule.EcsModule;
+        }
+
+        /// <summary>
+        /// 子类的销毁附带事件
+        /// </summary>
+        protected virtual void OnDispose()
+        {
+            
         }
     }
 }

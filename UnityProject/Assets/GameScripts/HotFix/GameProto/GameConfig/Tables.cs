@@ -87,6 +87,24 @@ public partial class Tables
             m_Chess_Tag.ResolveRef(this);
         }
     }
+    private Chess_TypeProperty m_Chess_TypeProperty;
+    public Chess_TypeProperty ChessTypeProperty 
+    {
+        get
+        {
+            if (m_Chess_TypeProperty == null)
+            {
+                m_Chess_TypeProperty = new Chess_TypeProperty(defaultLoader("chess_typeproperty"));
+                m_Chess_TypeProperty.ResolveRef(this);
+            }
+            return m_Chess_TypeProperty;
+        }
+        set
+        {
+            m_Chess_TypeProperty = value;
+            m_Chess_TypeProperty.ResolveRef(this);
+        }
+    }
 
     #endregion
 
