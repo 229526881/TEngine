@@ -44,6 +44,7 @@ namespace GameLogic
 
         public void UpdateByChessType()
         {
+            //这里表格的懒加载还没用
             Chess_TypePropertyItem typePropertyItem = null;
             string content = desContent;
             if (string.IsNullOrEmpty(chessConfigItem.GroupIndex_Ref.GroupDes))

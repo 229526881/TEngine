@@ -19,6 +19,7 @@ public sealed partial class Chess_TypePropertyItem : Luban.BeanBase
         Type = (ChessType)_buf.ReadInt();
         NotMaxContentStr = _buf.ReadString();
         MaxContentStr = _buf.ReadString();
+        ChessDetailTag = (ChessDetailTag)_buf.ReadInt();
     }
 
     public static Chess_TypePropertyItem DeserializeChess_TypePropertyItem(ByteBuf _buf)
@@ -38,6 +39,10 @@ public sealed partial class Chess_TypePropertyItem : Luban.BeanBase
     /// 最大描述
     /// </summary>
     public readonly string MaxContentStr;
+    /// <summary>
+    /// 自带的标签，有特殊
+    /// </summary>
+    public readonly ChessDetailTag ChessDetailTag;
    
     public const int __ID__ = -1817967999;
     public override int GetTypeId() => __ID__;
@@ -52,6 +57,7 @@ public sealed partial class Chess_TypePropertyItem : Luban.BeanBase
         + "type:" + Type + ","
         + "notMaxContentStr:" + NotMaxContentStr + ","
         + "maxContentStr:" + MaxContentStr + ","
+        + "chessDetailTag:" + ChessDetailTag + ","
         + "}";
     }
 }
