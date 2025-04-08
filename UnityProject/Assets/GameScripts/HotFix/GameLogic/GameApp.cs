@@ -29,8 +29,15 @@ public partial class GameApp
     private static void StartGameLogic()
     {
         GameEvent.Get<ILoginUI>().ShowLoginUI();
-        GameModule.UI.ShowUIAsync<BattleMainUI>();
+       // GameModule.UI.ShowUIAsync<BattleMainUI>();
         //GameModule.EcsModule.InitTypes(_hotfixAssembly);
+
+        //一开始应该不需要加上棋盘
+        //GameModule.MainScene.AddComponent<ChessBoard>();
+        //GameModule.MainScene.AddComponent<ChessBoard>();
+        
+        //棋盘 此时已经是一个可以被使用的组件了或许，虽然还没被实例化
+        //GameModule.MainScene.AddComponent<SaveModule>()
     }
     
     private static void Release()

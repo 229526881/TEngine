@@ -100,6 +100,20 @@ public class GameModule
     
     private static EcsModule _ecsModule;
     
+    
+    private static Scene mainScene;
+    public static Scene MainScene
+    {
+        get
+        {
+            if (mainScene != null)
+            {
+                return mainScene;
+            }
+            mainScene = SceneHelper.CreateScene(Utility_IdGenerater.GenerateInstanceId(), 0,"Game");
+            return mainScene;
+        }
+    }
 
     #endregion
     
