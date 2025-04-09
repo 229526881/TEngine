@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using GameConfig;
 using TEngine;
 using UnityEngine;
@@ -12,7 +13,13 @@ namespace GameLogic
 
         public Chess_ConfigItem ChessConfigItem { get { return _chessConfigItem; } set { _chessConfigItem = value; } }
 
-        
+        private CancellationTokenSource cancellationTokenSource;
+
+        public CancellationToken CancellationToken
+        {
+            get => cancellationTokenSource.Token;
+        }
+
         public virtual void  InitChessConfig(Chess_ConfigItem chessConfigItem)
         {
             this._chessConfigItem=chessConfigItem;
@@ -68,6 +75,12 @@ namespace GameLogic
         {
             Chess chess = new Chess();
             
+        }
+
+        protected override void OnDispose()
+        {
+            base.OnDispose();
+            cancellationToken.Cancel();
         }
     }
 
