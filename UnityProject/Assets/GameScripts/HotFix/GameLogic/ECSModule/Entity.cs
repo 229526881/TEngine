@@ -142,6 +142,7 @@ namespace TEngine
             }
 
             Entity entity = Create(type);
+            entity.Init();
             entity.ComponentParent = this;
             entity.Id = Id; //和挂载的entity一致
             components.Add(type, entity);
@@ -361,6 +362,12 @@ namespace TEngine
             }
             //触发destory 事件
             //GameModule.EcsModule;
+        }
+
+
+        protected virtual void Init()
+        {
+            
         }
 
         /// <summary>

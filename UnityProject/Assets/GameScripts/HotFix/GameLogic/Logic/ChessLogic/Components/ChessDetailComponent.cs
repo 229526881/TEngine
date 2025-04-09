@@ -127,7 +127,8 @@ namespace GameLogic
             if (isDirty)
             {
                 desContent = content;
-                onUpdateContentEvent?.Invoke(desContent);
+                onUpdateContentEvent?.Invoke(desContent); 
+                //这里用事件的方式进行传递会比较好TODO
                 isDirty = false;
             }
         }

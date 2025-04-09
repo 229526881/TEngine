@@ -47,7 +47,18 @@ namespace GameLogic
         {
             AddChild<ChessMonoComponent,Chess>(this);
         }
+        
+        /// <summary>
+        /// 棋子的选中逻辑,暂时是修改描述的功能
+        /// </summary>
+        public virtual void OnChessSelect()
+        {
+            
+        }
 
+        /// <summary>
+        /// 棋子的双击逻辑,不同棋子的行为不同
+        /// </summary>
         public virtual void OnChessClick()
         {
             
