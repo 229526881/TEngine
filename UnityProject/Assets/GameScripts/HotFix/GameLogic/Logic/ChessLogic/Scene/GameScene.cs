@@ -1,8 +1,7 @@
 ﻿using TEngine;
-
 namespace GameLogic
 {
-    public class ChessMono:Entity
+    public class GameScene
     {
         
     }

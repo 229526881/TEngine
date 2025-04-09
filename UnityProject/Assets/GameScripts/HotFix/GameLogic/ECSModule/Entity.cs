@@ -5,28 +5,20 @@ using UnityEngine;
 
 namespace TEngine
 {
-    public partial class Entity:  IMemory
+    public partial class Entity : IMemory
     {
         protected Entity domain;
 
         protected long Id;
-        
-        public long InstanceId
-        {
-            
-            get;
-            protected set;
-        }
- 
+
+        public long InstanceId { get; protected set; }
+
         public bool IsDisposed => this.InstanceId == 0;
-        
+
         //一系列entity的作用域
         public Entity Domain
         {
-            get
-            {
-                return this.domain;
-            }
+            get { return this.domain; }
             private set
             {
                 if (value == null)
@@ -34,20 +26,19 @@ namespace TEngine
                     throw new Exception($"domain cant set null: {this.GetType().Name}");
                 }
 
-                if (this.domain == value)  //作用域可以会触发system 进行注册的处理
+                if (this.domain == value) //作用域可以会触发system 进行注册的处理
                 {
                     return;
                 }
-                
+
                 Entity preDomain = this.domain;
                 if (preDomain == null)
                 {
                     InstanceId = Utility_IdGenerater.GenerateInstanceId();
                     this.IsRegister = true;
-                    
                 }
-                
-                
+
+
                 // 递归设置孩子的Domain
                 if (this.children != null)
                 {
@@ -68,7 +59,7 @@ namespace TEngine
         }
 
         private bool IsComponent;
-        
+
         protected Entity parent;
 
         public Entity Parent
@@ -81,17 +72,18 @@ namespace TEngine
                 {
                     throw new Exception($"cant set parent null: {this.GetType().Name}");
                 }
-                
+
                 if (value == this)
                 {
                     throw new Exception($"cant set parent self: {this.GetType().Name}");
                 }
+
                 this.parent = value;
                 this.parent.AddChild(this);
                 this.IsComponent = false;
             }
         }
-        
+
         private Dictionary<long, Entity> children;
 
         public Dictionary<long, Entity> Children
@@ -102,6 +94,7 @@ namespace TEngine
                 {
                     //this.children = childrenPool.Fetch();
                 }
+
                 return this.children;
             }
         }
@@ -120,8 +113,9 @@ namespace TEngine
                 this.Domain = this.parent.domain;
             }
         }
-        
+
         private bool isRegister;
+
         protected bool IsRegister
         {
             get => isRegister;
@@ -131,17 +125,18 @@ namespace TEngine
                 {
                     return;
                 }
+
                 isRegister = value;
                 //同时注册对应的进入运行逻辑
-              //  EventSystem.Instance.RegisterSystem(this, value);
+                //  EventSystem.Instance.RegisterSystem(this, value);
             }
         }
 
-        public Dictionary<Type,Entity>components = new Dictionary<Type, Entity>();
+        public Dictionary<Type, Entity> components = new Dictionary<Type, Entity>();
 
         private Entity AddComponentSelf(Type type)
         {
-            if (components!=null&&components.ContainsKey(type))
+            if (components != null && components.ContainsKey(type))
             {
                 throw new Exception($"entity already has component: {type.FullName}");
             }
@@ -152,42 +147,42 @@ namespace TEngine
             components.Add(type, entity);
             return entity;
         }
-        
-        private Entity AddChildSelf(Type type,long id=-1)
+
+        private Entity AddChildSelf(Type type, long id = -1)
         {
-            Entity entity =Create(type);
+            Entity entity = Create(type);
             if (id < 0)
             {
-                id=Utility_IdGenerater.GenerateInstanceId();
+                id = Utility_IdGenerater.GenerateInstanceId();
             }
 
             entity.Id = id;
             entity.Parent = this;
             return entity;
         }
-        
+
         public Entity AddComponent(Type type)
         {
-            Entity entity= AddComponentSelf(type);
-            
+            Entity entity = AddComponentSelf(type);
+
             return entity;
         }
-        
+
         public T AddComponent<T>() where T : Entity
         {
-            
             Type type = typeof(T);
             Entity entity = AddComponent(type);
             //EventSystem.Instance.Awake(component);
+            //this.Awake();
             return entity as T;
         }
-        
-        public T AddComponent<T,K>(K k1) where T : Entity
+
+        public T AddComponent<T, K>(K k1) where T : Entity
         {
-            
             Type type = typeof(T);
             Entity entity = AddComponent(type);
             //EventSystem.Instance.Awake(component,k1);
+           // this.Awake(k1);
             return entity as T;
         }
 
@@ -196,19 +191,21 @@ namespace TEngine
         {
             Entity child = AddChildSelf(typeof(T));
             //EventSystem.Instance.Awake(component);
+            //this.Awake();
             return child as T;
         }
-        
-        public T AddChild<T,K>(K k1) where T : Entity
+
+        public T AddChild<T, K>(K k1) where T : Entity
         {
             Entity child = AddChildSelf(typeof(T));
             //EventSystem.Instance.Awake(component,k1);
+            //this.Awake(k1);
             return child as T;
         }
 
         public T AddChildWithId<T>(long id) where T : Entity
         {
-            Entity child = AddChildSelf(typeof(T),id);
+            Entity child = AddChildSelf(typeof(T), id);
             return child as T;
         }
 
@@ -217,15 +214,15 @@ namespace TEngine
             this.Children.Add(entity.Id, entity);
             //  this.AddChildDB(entity);
         }
-        
+
         private void RemoveChild(Entity entity)
         {
-            if (IsDisposed||children==null)
-                return ;
-            
-            if(children==null)
+            if (IsDisposed || children == null)
                 return;
-            
+
+            if (children == null)
+                return;
+
             children.Remove(entity.Id);
             entity.Clear();
         }
@@ -258,7 +255,7 @@ namespace TEngine
             {
                 return;
             }
-            
+
             this.components.Remove(type);
             c.Clear();
         }
@@ -280,44 +277,47 @@ namespace TEngine
             {
                 return;
             }
+
             this.components.Remove(type);
 
             c.Clear();
         }
-        
+
         public static Entity Create(Type type)
         {
-            Entity entity = MemoryPool.Acquire(type) as  Entity;
+            Entity entity = MemoryPool.Acquire(type) as Entity;
             if (entity == null)
             {
-                entity=(Entity)Activator.CreateInstance(type);
+                entity = (Entity)Activator.CreateInstance(type);
             }
 
             return entity;
         }
 
-        public virtual Entity GetComponent(Type type) 
+        public virtual Entity GetComponent(Type type)
         {
-            if (components!=null&&components.TryGetValue(type, out Entity component))
+            if (components != null && components.TryGetValue(type, out Entity component))
             {
                 return component;
             }
+
             return null;
         }
 
-        public virtual T GetComponent<T>()  where T : Entity
+        public virtual T GetComponent<T>() where T : Entity
         {
-            Type type= typeof(T);
-            if (components!=null&&components.TryGetValue(type, out Entity component))
+            Type type = typeof(T);
+            if (components != null && components.TryGetValue(type, out Entity component))
             {
                 return component as T;
             }
+
             return null;
         }
-        
+
         public void Clear()
         {
-            if(this.IsDisposed)
+            if (this.IsDisposed)
                 return;
             isRegister = false;
             InstanceId = 0;
@@ -329,6 +329,7 @@ namespace TEngine
                 {
                     kv.Value.Clear();
                 }
+
                 this.components.Clear();
                 this.components = null;
             }
@@ -340,12 +341,13 @@ namespace TEngine
                 {
                     child.Clear();
                 }
+
                 this.children.Clear();
                 children = null;
             }
 
             domain = null;
-            
+
             if (this.parent != null && !this.parent.IsDisposed)
             {
                 if (this.IsComponent)
@@ -366,7 +368,35 @@ namespace TEngine
         /// </summary>
         protected virtual void OnDispose()
         {
-            
         }
     }
+
+
+    // public partial class Entity
+    // {
+    //     #region System
+    //     public virtual void Awake()
+    //     {
+    //     }
+    //     public virtual void Awake<T>(T t)
+    //     {
+    //     }
+    //
+    //     public virtual void Awake<T, A>(T t, A a)
+    //     {
+    //     }
+    //
+    //     public virtual void Awake<T, A, B>(T t, A a, B b)
+    //     {
+    //     }
+    //
+    //     public virtual void Awake<T, A, B, C>(T self, A a, B b, C c)
+    //     {
+    //     }
+    //
+    //     public virtual void Awake<T, A, B, C, D>(T self, A a, B b, C c, D d)
+    //     {
+    //     }
+    //     #endregion
+    // }
 }

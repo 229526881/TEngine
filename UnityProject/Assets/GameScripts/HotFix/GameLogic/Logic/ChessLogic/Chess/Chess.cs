@@ -43,9 +43,9 @@ namespace GameLogic
             return ChessDetailTag.None;
         }
 
-        public virtual void SetChessMono(ChessMono chessMono)
+        public virtual void SetChessMono(ChessMonoComponent chessMonoComponent)
         {
-            AddChild<ChessMono,Chess>(this);
+            AddChild<ChessMonoComponent,Chess>(this);
         }
 
         public virtual void OnChessClick()
