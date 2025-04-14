@@ -80,7 +80,7 @@ namespace GameLogic
         protected override void OnDispose()
         {
             base.OnDispose();
-            cancellationToken.Cancel();
+            cancellationTokenSource.Cancel();
         }
     }
 
