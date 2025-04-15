@@ -28,6 +28,7 @@ namespace GameLogic
            initEnd = true;
         }
 
+        //根据存档来实例化棋子实例，
         /// <summary>
         /// 根据存档数据初始化表格，获得根据变化
         /// </summary>

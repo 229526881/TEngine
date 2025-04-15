@@ -21,5 +21,10 @@ namespace GameLogic
         /// </summary>
         public void UpdateDirtyData();
 
+        
+        /// <summary>
+        /// 存所有的存档
+        /// </summary>
+        public void SaveAllData();
     }
 }

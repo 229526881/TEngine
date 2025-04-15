@@ -38,6 +38,8 @@ public partial class GameApp
         
         //棋盘 此时已经是一个可以被使用的组件了或许，虽然还没被实例化
         //GameModule.MainScene.AddComponent<SaveModule>()
+      //  GameModule.MainScene.AddComponent<SaveDataLogice>();
+        GameModule.MainScene.AddComponent<ChessBoardRoot>();
     }
     
     private static void Release()

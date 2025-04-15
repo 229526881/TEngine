@@ -14,7 +14,13 @@ namespace GameLogic
         /// </summary>
         public List<NormalWareHouseSaveData> WareHouseDatas = new List<NormalWareHouseSaveData>();
         
+        
+        /// <summary>
+        /// buff 对应的数据，思考是否都属于棋盘存档
+        /// </summary>
         public List<BuffStateSaveData> ChessBoardStates = new List<BuffStateSaveData>();
 
+        
+        
     }
 }
