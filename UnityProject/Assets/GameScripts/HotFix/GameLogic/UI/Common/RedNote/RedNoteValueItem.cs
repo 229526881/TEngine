@@ -12,7 +12,7 @@ namespace GameLogic
         private RedNoteType m_noteType;
 
         private bool m_dirty;
-        private bool m_tmpState;
+        private bool m_tmpState; 
 
         public void Init(string keyStr, RedNoteType noteType)
         {

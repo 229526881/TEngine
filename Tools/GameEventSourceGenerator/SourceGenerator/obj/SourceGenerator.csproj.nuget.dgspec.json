@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "E:\\WorkSpace\\ZGame\\Tools\\GameEventSourceGenerator\\SourceGenerator\\SourceGenerator.csproj": {}
+    "E:\\Project\\Study\\TEngine\\Tools\\GameEventSourceGenerator\\SourceGenerator\\SourceGenerator.csproj": {}
   },
   "projects": {
-    "E:\\WorkSpace\\ZGame\\Tools\\GameEventSourceGenerator\\SourceGenerator\\SourceGenerator.csproj": {
+    "E:\\Project\\Study\\TEngine\\Tools\\GameEventSourceGenerator\\SourceGenerator\\SourceGenerator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\WorkSpace\\ZGame\\Tools\\GameEventSourceGenerator\\SourceGenerator\\SourceGenerator.csproj",
+        "projectUniqueName": "E:\\Project\\Study\\TEngine\\Tools\\GameEventSourceGenerator\\SourceGenerator\\SourceGenerator.csproj",
         "projectName": "SourceGenerator",
-        "projectPath": "E:\\WorkSpace\\ZGame\\Tools\\GameEventSourceGenerator\\SourceGenerator\\SourceGenerator.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "E:\\WorkSpace\\ZGame\\Tools\\GameEventSourceGenerator\\SourceGenerator\\obj\\",
+        "projectPath": "E:\\Project\\Study\\TEngine\\Tools\\GameEventSourceGenerator\\SourceGenerator\\SourceGenerator.csproj",
+        "packagesPath": "C:\\Users\\AA\\.nuget\\packages\\",
+        "outputPath": "E:\\Project\\Study\\TEngine\\Tools\\GameEventSourceGenerator\\SourceGenerator\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\AA\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -74,7 +72,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     }
